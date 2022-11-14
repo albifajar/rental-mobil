@@ -36,7 +36,7 @@
             <tr>
               <td x-text="index+1"></td>
               <td x-text="student.name"></td>
-              <td x-text="student.mobil"></td>
+              <td x-text="student.mobil.name"></td>
               <td>
                 <button @click.prevent="detail(student,index)" class="btn p-0">
                   <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="currentColor" d="m18.988 2.012 3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287-3-3L8 13z"/><path fill="currentColor" d="M19 19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2V19z"/></svg>
@@ -57,22 +57,27 @@
               <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" data-count=0>
                 <div class="form-group mb-3">
                     <label>Nama</label>
                     <input x-model="form.name" type="text" class="form-control" placeholder="Enter Name">
                 </div>
                 <div class="form-group mb-3">
                     <label>Mobil</label>
-                    <select x-model="form.mobil" class="form-control">
+                    <select x-model="form.mobil" class="form-control" @change="form.total=(convertRange(form.waktu)*(listmobil($el.value)).harga)">
                       <option selected="">Pilih</option>
-                      <option value="Avanza">Avanza</option>
-                      <option value="Kijang">Kijang</option>
+                      <option value="0">Avanza</option>
                     </select>
                 </div>
                 <div class="form-group mb-3">
                     <label>Rentang Peminjaman</label>
-                    <input x-model="form.waktu" id="myID" class="form-control" type="text" placeholder="Select Date.." readonly="readonly">
+                    <input x-model="form.waktu" id="myID" @change="form.total=(convertRange($el.value)*(listmobil(form.mobil)).harga)" class="form-control" type="text" placeholder="Select Date.." readonly="readonly">
+                </div>
+                
+                <div class="form-group mb-3">
+                  <label>Harga</label>
+                  <input name="number" x-model="form.total" class="form-control">
+                  </input>
                 </div>
             </div>
             <div class="modal-footer">
@@ -84,7 +89,6 @@
         </div>
       </div>
     </div>
-
 
     <!-- Edit Data -->
     <div class="modal fade" id="editData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -102,15 +106,18 @@
                 </div>
                 <div class="form-group mb-3">
                     <label>Mobil</label>
-                    <select x-model="form.mobil" class="form-control">
-                      <option selected="">Pilih</option>
-                      <option value="Avanza">Avanza</option>
-                      <option value="Kijang">Kijang</option>
+                    <select x-model="form.mobil" class="form-control" @change="form.total=(convertRange(form.waktu)*(listmobil($el.value)).harga)">
+                      <option value="0">Avanza</option>
                     </select>
                 </div>
                 <div class="form-group mb-3">
-                    <label>Rentang Peminjaman</label>
-                    <input x-model="form.waktu" id="myID" class="form-control" type="text" placeholder="Select Date.." readonly="readonly">
+                  <label>Rentang Peminjaman</label>
+                  <input x-model="form.waktu" id="myID" class="form-control" type="text" placeholder="Select Date.." readonly="readonly"  @change="form.total=(convertRange($el.value)*(listmobil(form.mobil)).harga)">
+                </div>
+                <div class="form-group mb-3">
+                  <label>Harga</label>
+                  <input name="number" x-model="form.total" class="form-control">
+                  </input>
                 </div>
             </div>
             <div class="modal-footer">
