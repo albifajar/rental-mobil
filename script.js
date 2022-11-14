@@ -37,14 +37,7 @@ const crud = () => {
       waktu: "",
       total: 0,
     },
-    students: [
-      {
-        name: "testing",
-        mobil: 0,
-        waktu: "",
-        total: 0,
-      },
-    ],
+    students: [],
     detail(student, index) {
       new bootstrap.Modal("#editData", {
         keyboard: false,
@@ -73,6 +66,8 @@ const crud = () => {
         this.students.splice(this.id, 1, {
           name: this.form.name,
           mobil: listmobil(this.form.mobil),
+          waktu: this.form.waktu,
+          total: this.form.total,
         });
         this.resetForm();
       }
