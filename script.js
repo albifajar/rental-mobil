@@ -62,15 +62,13 @@ const crud = () => {
       }
     },
     updateData() {
-      if (this.form.name.length && this.form.mobil.length) {
-        this.students.splice(this.id, 1, {
-          name: this.form.name,
-          mobil: listmobil(this.form.mobil),
-          waktu: this.form.waktu,
-          total: this.form.total,
-        });
-        this.resetForm();
-      }
+      this.students.splice(this.id, 1, {
+        name: this.form.name,
+        mobil: listmobil(this.form.mobil),
+        waktu: this.form.waktu,
+        total: this.form.total,
+      });
+      this.resetForm();
     },
     deleteData(index) {
       this.students.splice(index, 1);
@@ -79,6 +77,7 @@ const crud = () => {
       this.form.name = "";
       this.form.mobil = {};
       this.form.waktu = "";
+      this.form.total = 0;
       this.addMode = true;
     },
   };
