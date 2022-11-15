@@ -1,0 +1,13 @@
+.content-image-profile .frame-image {
+  margin: 10px;
+  background-color: #757778;
+  border-radius: 100%;
+}
+
+.content-image-profile .frame-image img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 100%;
+  margin: 2px;
+}
