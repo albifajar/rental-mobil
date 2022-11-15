@@ -43,20 +43,23 @@ const crud = () => {
         keyboard: false,
       }).show();
 
-      this.form.name = student.name;
-      this.form.mobil = student.mobil.id;
       this.form.mobilname = student.mobil.name;
-      this.form.waktu = student.waktu;
+      this.form.peminjam = student.name;
+      this.form.totalHarga = student.total;
       this.form.waktuEnd = student.waktu.split(" to ")[1];
       this.form.waktuStart = student.waktu.split(" to ")[0];
       this.form.waktuTotalRange = convertRange(student.waktu) + " Hari";
-      this.form.total = student.total;
       this.id = index;
     },
-    openEdit(student, index) {
+    openEdit(index) {
+      this.form.name = this.students[index].name;
+      this.form.total = this.students[index].total;
+      this.form.mobil = this.students[index].mobil.id;
+      this.form.waktu = this.students[index].waktu;
+
       this.addMode = false;
     },
-    closeEdit(student, index) {
+    closeEdit(index) {
       this.addMode = true;
     },
     saveData() {
