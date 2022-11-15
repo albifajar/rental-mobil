@@ -26,9 +26,10 @@
       <table class="table">
         <thead class="thead">
           <tr>
-            <th>SL</th>
+            <th>No</th>
             <th>Nama</th>
             <th>Mobil</th>
+            <th>Total Harga</th>
             <th width="50px"></th>
           </tr>
         </thead>
@@ -38,8 +39,9 @@
               <td x-text="index+1"></td>
               <td x-text="student.name"></td>
               <td x-text="student.mobil.name"></td>
+              <td x-text="student.total"></td>
               <td>
-                <button @click.prevent="detail(student,index)" class="btn p-0">
+                <button @click.prevent="detail(student,index)" class="btn p-0 ">
                   <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="currentColor" d="m18.988 2.012 3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287-3-3L8 13z"/><path fill="currentColor" d="M19 19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2V19z"/></svg>
                 </button>
               </td>
