@@ -37,25 +37,36 @@ const crud = () => {
       waktu: "",
       total: 0,
     },
+    detailData: {
+      mobilname: "",
+      peminjam: "",
+      totalHarga: "",
+      waktuEnd: "",
+      waktuStart: "",
+      waktuTotalRange: "",
+    },
+    editData: {},
     students: [],
     detail(student, index) {
       new bootstrap.Modal("#editData", {
         keyboard: false,
       }).show();
 
-      this.form.mobilname = student.mobil.name;
-      this.form.peminjam = student.name;
-      this.form.totalHarga = student.total;
-      this.form.waktuEnd = student.waktu.split(" to ")[1];
-      this.form.waktuStart = student.waktu.split(" to ")[0];
-      this.form.waktuTotalRange = convertRange(student.waktu) + " Hari";
-      this.id = index;
+      this.detailData.mobilname = student.mobil.name;
+      this.detailData.peminjam = student.name;
+      this.detailData.totalHarga = student.total;
+      this.detailData.waktuEnd = student.waktu.split(" to ")[1];
+      this.detailData.waktuStart = student.waktu.split(" to ")[0];
+      this.detailData.waktuTotalRange = convertRange(student.waktu) + " Hari";
+      this.detailData.id = index;
+
+      this.editData = student;
     },
     openEdit(index) {
-      this.form.name = this.students[index].name;
-      this.form.total = this.students[index].total;
-      this.form.mobil = this.students[index].mobil.id;
-      this.form.waktu = this.students[index].waktu;
+      this.form.name = this.editData.name;
+      this.form.total = this.editData.total;
+      this.form.mobil = this.editData.mobil.id;
+      this.form.waktu = this.editData.waktu;
 
       this.addMode = false;
     },
@@ -75,12 +86,14 @@ const crud = () => {
       }
     },
     updateData() {
-      this.students.splice(this.id, 1, {
-        name: this.form.name,
-        mobil: listmobil(this.form.mobil),
-        waktu: this.form.waktu,
-        total: this.form.total,
-      });
+      if (this.form.name.length) {
+        this.students.splice(this.id, 1, {
+          name: this.form.name,
+          mobil: listmobil(this.form.mobil),
+          waktu: this.form.waktu,
+          total: this.form.total,
+        });
+      }
       this.resetForm();
     },
     deleteData(index) {
